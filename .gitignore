@@ -15,7 +15,6 @@ build/
 *.tar
 *.tar.gz
 run/
-!src/main/resources/META-INF/jarjar/*.jar
 
 # 避免忽略gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.jar
