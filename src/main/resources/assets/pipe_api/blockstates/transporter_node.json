@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pipe_api:block/transporter_node"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_group.pipe_api.example": "Pipe API",
+  "block.pipe_api.void_hopper" : "虚空漏斗",
+  "block.pipe_api.transporter_node" : "传输节点",
+  "block.pipe_api.transport_pipe" : "运输管道",
+  "item.pipe_api.node_upgrade_item_filter" : "节点升级：物品过滤",
+  "gui.pipe_api.fluid_type": "流体类型：%s",
+  "gui.pipe_api.fluid_amount": "储量：%s / %s mB",
+  "gui.pipe_api.fluid_empty": "空",
+  "block.pipe_api.fluid_transporter_node": "流体传输节点"
+}

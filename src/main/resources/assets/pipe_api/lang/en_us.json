@@ -1,0 +1,11 @@
+{
+  "item_group.pipe_api.example": "Pipe API",
+  "block.pipe_api.void_hopper" : "Void Hopper",
+  "block.pipe_api.transporter_node" : "Transporter Node",
+  "block.pipe_api.transport_pipe" : "Transport Pipe",
+  "item.pipe_api.node_upgrade_item_filter" : "Node Upgrade: Item Filter",
+  "gui.pipe_api.fluid_type": "Fluid: %s",
+  "gui.pipe_api.fluid_amount": "Amount: %s / %s mB",
+  "gui.pipe_api.fluid_empty": "Empty",
+  "block.pipe_api.fluid_transporter_node": "Fluid Transporter Node"
+}

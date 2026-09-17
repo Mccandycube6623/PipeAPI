@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "pipe_api:item/node_upgrade_item_filter"
+  }
+}

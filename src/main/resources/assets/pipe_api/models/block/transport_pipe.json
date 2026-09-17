@@ -1,0 +1,23 @@
+{
+  "credit": "Based on guandao.bbmodel",
+  "texture_size": [32, 32],
+  "textures": {
+    "big": "pipe_api:block/big",
+    "small": "pipe_api:block/small",
+    "particle": "pipe_api:block/big"
+  },
+  "elements": [
+    {
+      "from": [4, 4, 4],
+      "to": [12, 12, 12],
+      "faces": {
+        "north": { "uv": [0, 0, 4, 4], "texture": "#big" },
+        "east": { "uv": [0, 0, 4, 4], "texture": "#big" },
+        "south": { "uv": [0, 0, 4, 4], "texture": "#big" },
+        "west": { "uv": [0, 0, 4, 4], "texture": "#big" },
+        "up": { "uv": [0, 0, 4, 4], "texture": "#big" },
+        "down": { "uv": [0, 0, 4, 4], "texture": "#big" }
+      }
+    }
+  ]
+}
