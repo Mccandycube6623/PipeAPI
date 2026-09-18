@@ -7,5 +7,13 @@
   "gui.pipe_api.fluid_type": "Fluid: %s",
   "gui.pipe_api.fluid_amount": "Amount: %s / %s mB",
   "gui.pipe_api.fluid_empty": "Empty",
-  "block.pipe_api.fluid_transporter_node": "Fluid Transporter Node"
+  "block.pipe_api.fluid_transporter_node": "Fluid Transporter Node",
+  "gui.pipe_api.enabled": "§a✔ enabled",
+  "gui.pipe_api.disabled": "§c✘ disabled - insert redstone torch",
+  "gui.pipe_api.east": "East",
+  "gui.pipe_api.south": "South",
+  "gui.pipe_api.west": "West",
+  "gui.pipe_api.north": "North",
+  "gui.pipe_api.up": "Up",
+  "gui.pipe_api.down": "Down"
 }

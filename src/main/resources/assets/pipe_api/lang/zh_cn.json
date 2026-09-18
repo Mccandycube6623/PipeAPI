@@ -7,5 +7,13 @@
   "gui.pipe_api.fluid_type": "流体类型：%s",
   "gui.pipe_api.fluid_amount": "储量：%s / %s mB",
   "gui.pipe_api.fluid_empty": "空",
-  "block.pipe_api.fluid_transporter_node": "流体传输节点"
+  "block.pipe_api.fluid_transporter_node": "流体传输节点",
+  "gui.pipe_api.enabled": "§a✔ 已启用",
+  "gui.pipe_api.disabled": "§c✘ 已禁用 - 放入红石火把以启用",
+  "gui.pipe_api.east": "东",
+  "gui.pipe_api.south": "南",
+  "gui.pipe_api.west": "西",
+  "gui.pipe_api.north": "北",
+  "gui.pipe_api.up": "上",
+  "gui.pipe_api.down": "下"
 }
