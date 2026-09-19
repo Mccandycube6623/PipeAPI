@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FluidTransporterNodeScreen extends AbstractContainerScreen<FluidTransporterNodeMenu> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(PipeAPI.MODID, "textures/screen/xiang.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(PipeAPI.MODID, "textures/screen/lx.png");
 
     public FluidTransporterNodeScreen(FluidTransporterNodeMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
