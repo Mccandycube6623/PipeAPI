@@ -13,38 +13,52 @@ import net.minecraftforge.items.SlotItemHandler;
 public class TransporterNodeMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
 
+    // ===== 槽位坐标（供 Menu 与 Screen 共用，避免不一致）=====
+    public static final int CACHE_X = 80,  CACHE_Y = 20;
+    public static final int FILTER_X = 44, FILTER_Y = 50;
+    public static final int SPEED_X = 80,  SPEED_Y = 50;
+    public static final int RESERVED_X = 116, RESERVED_Y = 50;
+    public static final int DIR_Y = 96;
+    public static final int[] DIR_X = {26, 44, 62, 80, 98, 116};
+
+    // 玩家背包起始 Y
+    public static final int INV_Y = 128;
+    public static final int HOTBAR_Y = 186;
+
     public TransporterNodeMenu(int windowId, Inventory playerInv,
                                IItemHandler nodeInventory,
                                ContainerLevelAccess access) {
         super(DTMenu.TRANSPORTER_NODE_MENU.get(), windowId);
         this.access = access;
 
-        //容器槽位：0=缓存，1=过滤器，2=速度，18-23=方向（红石火把），其余锁定
-        for (int i = 0; i < 27; i++) {
-            int x = 8 + (i % 9) * 18;
-            int y = 18 + (i / 9) * 18;
-            if (i == 0) {
-                this.addSlot(new SlotItemHandler(nodeInventory, i, x, y));
-            } else if (i == 1) {
-                this.addSlot(new UpgradeSlot(nodeInventory, i, x, y));
-            } else if (i == 2) {
-                this.addSlot(new SpeedUpgradeSlot(nodeInventory, i, x, y));
-            } else if (i >= TransporterNodeBlockEntity.SLOT_DIR_START
-                    && i < TransporterNodeBlockEntity.SLOT_DIR_START + TransporterNodeBlockEntity.DIR_SLOT_COUNT) {
-                this.addSlot(new RedstoneTorchSlot(nodeInventory, i, x, y));
-            } else {
-                this.addSlot(new LockedSlot(nodeInventory, i, x, y));
-            }
+        // 缓存槽
+        this.addSlot(new SlotItemHandler(nodeInventory,
+                TransporterNodeBlockEntity.SLOT_CACHE, CACHE_X, CACHE_Y));
+        // 过滤器槽
+        this.addSlot(new UpgradeSlot(nodeInventory,
+                TransporterNodeBlockEntity.SLOT_FILTER, FILTER_X, FILTER_Y));
+        // 速度升级槽
+        this.addSlot(new SpeedUpgradeSlot(nodeInventory,
+                TransporterNodeBlockEntity.SLOT_SPEED, SPEED_X, SPEED_Y));
+        // 预留槽（禁用）
+        this.addSlot(new LockedSlot(nodeInventory,
+                TransporterNodeBlockEntity.SLOT_RESERVED, RESERVED_X, RESERVED_Y));
+        // 方向槽：E S W N U D
+        for (int i = 0; i < TransporterNodeBlockEntity.DIR_SLOT_COUNT; i++) {
+            this.addSlot(new RedstoneTorchSlot(nodeInventory,
+                    TransporterNodeBlockEntity.SLOT_DIR_START + i, DIR_X[i], DIR_Y));
         }
 
+        // 玩家背包 3 行
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
                 this.addSlot(new Slot(playerInv, col + row * 9 + 9,
-                        8 + col * 18, 140 + row * 18));
+                        8 + col * 18, INV_Y + row * 18));
             }
         }
+        // 玩家快捷栏
         for (int col = 0; col < 9; ++col) {
-            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 198));
+            this.addSlot(new Slot(playerInv, col, 8 + col * 18, HOTBAR_Y));
         }
     }
 
@@ -105,7 +119,7 @@ public class TransporterNodeMenu extends AbstractContainerMenu {
         if (slot != null && slot.hasItem()) {
             ItemStack stackInSlot = slot.getItem();
             itemstack = stackInSlot.copy();
-            int containerSlots = 27;
+            final int containerSlots = TransporterNodeBlockEntity.INVENTORY_SIZE;
 
             if (index < containerSlots) {
                 if (!this.moveItemStackTo(stackInSlot, containerSlots, this.slots.size(), true)) {
@@ -114,19 +128,26 @@ public class TransporterNodeMenu extends AbstractContainerMenu {
             } else {
                 boolean moved;
                 if (TransporterNodeBlockEntity.isSpeedUpgrade(stackInSlot)) {
-                    moved = this.moveItemStackTo(stackInSlot, 2, 3, false);
+                    moved = this.moveItemStackTo(stackInSlot,
+                            TransporterNodeBlockEntity.SLOT_SPEED,
+                            TransporterNodeBlockEntity.SLOT_SPEED + 1, false);
                 } else if (stackInSlot.getItem() instanceof NodeUpgradeItemFilter) {
-                    moved = this.moveItemStackTo(stackInSlot, 1, 2, false);
+                    moved = this.moveItemStackTo(stackInSlot,
+                            TransporterNodeBlockEntity.SLOT_FILTER,
+                            TransporterNodeBlockEntity.SLOT_FILTER + 1, false);
                 } else if (stackInSlot.is(Items.REDSTONE_TORCH)) {
-                    // 优先放入空的方向槽，如果全满则尝试缓存
                     int start = TransporterNodeBlockEntity.SLOT_DIR_START;
                     int end = start + TransporterNodeBlockEntity.DIR_SLOT_COUNT;
                     moved = this.moveItemStackTo(stackInSlot, start, end, false);
                     if (!moved) {
-                        moved = this.moveItemStackTo(stackInSlot, 0, 1, false);
+                        moved = this.moveItemStackTo(stackInSlot,
+                                TransporterNodeBlockEntity.SLOT_CACHE,
+                                TransporterNodeBlockEntity.SLOT_CACHE + 1, false);
                     }
                 } else {
-                    moved = this.moveItemStackTo(stackInSlot, 0, 1, false);
+                    moved = this.moveItemStackTo(stackInSlot,
+                            TransporterNodeBlockEntity.SLOT_CACHE,
+                            TransporterNodeBlockEntity.SLOT_CACHE + 1, false);
                 }
                 if (!moved) return ItemStack.EMPTY;
             }

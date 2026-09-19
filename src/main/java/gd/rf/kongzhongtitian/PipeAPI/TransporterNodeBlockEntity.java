@@ -29,13 +29,18 @@ import java.util.*;
 
 public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvider {
 
-    public static final int INVENTORY_SIZE = 27;
-    public static final int SLOT_CACHE = 0;
-    public static final int SLOT_FILTER = 1;
-    public static final int SLOT_SPEED = 2;
-
-    // 方向槽：第三行第 1-6 格（索引 18~23）
-    public static final int SLOT_DIR_START = 18;
+    // ==== 槽位布局（共 10 格）====
+    // 0  缓存
+    // 1  过滤器
+    // 2  速度升级
+    // 3  预留（禁用）
+    // 4~9 方向：E S W N U D
+    public static final int INVENTORY_SIZE = 10;
+    public static final int SLOT_CACHE    = 0;
+    public static final int SLOT_FILTER   = 1;
+    public static final int SLOT_SPEED    = 2;
+    public static final int SLOT_RESERVED = 3;
+    public static final int SLOT_DIR_START = 4;
     public static final int DIR_SLOT_COUNT = 6;
 
     // 方向顺序：东、南、西、北、上、下
@@ -236,17 +241,10 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
 
         double perItem;
         switch (id) {
-            case "exura:upgrade_speed":
-                perItem = 0.5;
-                break;
-            case "exura:upgrade_speed_enchanted":
-                perItem = 0.49;
-                break;
-            case "exura:upgrade_speed_super":
-                perItem = 0.48;
-                break;
-            default:
-                return 1.0;
+            case "exura:upgrade_speed":           perItem = 0.5;  break;
+            case "exura:upgrade_speed_enchanted": perItem = 0.49; break;
+            case "exura:upgrade_speed_super":     perItem = 0.48; break;
+            default: return 1.0;
         }
 
         double multiplier = 1.0;
@@ -267,9 +265,7 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
     private void tryExtractOneToCache() {
         List<ItemStack> filters = getFilterItems();
 
-        // 按固定方向顺序：东、南、西、北、上、下
         for (Direction dir : DIRECTION_ORDER) {
-            // 未放入红石火把的方向：跳过
             if (!isDirectionEnabled(dir)) continue;
 
             BlockPos neighbor = worldPosition.relative(dir);
@@ -278,7 +274,6 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
             BlockEntity be = level.getBlockEntity(neighbor);
             if (be == null) continue;
 
-            // 跳过管道和节点本身
             if (level.getBlockState(neighbor).is(DTBlocks.TRANSPORTER_NODE.get())
                     || level.getBlockState(neighbor).is(DTBlocks.TRANSPORT_PIPE.get())) continue;
 

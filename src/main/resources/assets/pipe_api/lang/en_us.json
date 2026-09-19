@@ -15,5 +15,15 @@
   "gui.pipe_api.west": "West",
   "gui.pipe_api.north": "North",
   "gui.pipe_api.up": "Up",
-  "gui.pipe_api.down": "Down"
+  "gui.pipe_api.down": "Down",
+  "gui.pipe_api.east_short": "E",
+  "gui.pipe_api.south_short": "S",
+  "gui.pipe_api.west_short": "W",
+  "gui.pipe_api.north_short": "N",
+  "gui.pipe_api.up_short": "U",
+  "gui.pipe_api.down_short": "D",
+  "gui.pipe_api.c": "Cache",
+  "gui.pipe_api.f": "Filter",
+  "gui.pipe_api.s": "Speed Upgrade",
+  "gui.pipe_api.r": "Disabled"
 }

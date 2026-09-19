@@ -15,5 +15,15 @@
   "gui.pipe_api.west": "西",
   "gui.pipe_api.north": "北",
   "gui.pipe_api.up": "上",
-  "gui.pipe_api.down": "下"
+  "gui.pipe_api.down": "下",
+  "gui.pipe_api.east_short": "东",
+  "gui.pipe_api.south_short": "南",
+  "gui.pipe_api.west_short": "西",
+  "gui.pipe_api.north_short": "北",
+  "gui.pipe_api.up_short": "上",
+  "gui.pipe_api.down_short": "下",
+  "gui.pipe_api.c": "缓存槽",
+  "gui.pipe_api.f": "过滤槽",
+  "gui.pipe_api.s": "速度升级",
+  "gui.pipe_api.r": "已禁用"
 }
