@@ -53,7 +53,7 @@ public class TransporterNodeMenu extends AbstractContainerMenu {
         //for (int i = 0; i < TransporterNodeBlockEntity.DIR_SLOT_COUNT; i++) {
         //    this.addSlot(new RedstoneTorchSlot(nodeInventory,
         //            TransporterNodeBlockEntity.SLOT_DIR_START + i, DIR_X[i], DIR_Y));
-        }
+        //}
 
         // 玩家背包 3 行
         for (int row = 0; row < 3; ++row) {
