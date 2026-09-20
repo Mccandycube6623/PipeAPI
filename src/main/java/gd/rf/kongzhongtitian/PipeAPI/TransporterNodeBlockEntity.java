@@ -27,6 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.*;
 
+
 public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvider {
 
     // ==== 槽位布局（共 10 格）====
@@ -48,13 +49,18 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
             Direction.EAST, Direction.SOUTH, Direction.WEST,
             Direction.NORTH, Direction.UP, Direction.DOWN
     };
-
+	
     private final ItemStackHandler itemHandler = new ItemStackHandler(INVENTORY_SIZE) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
         }
     };
+    
+	public IItemHandler getItemHandler() {
+		return itemHandler;
+	}
+	
     private LazyOptional<IItemHandler> lazyHandler = LazyOptional.empty();
 
     private double extractCooldown = 10.0;
