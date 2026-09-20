@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pipe_api:transport_node"
+          "name": "pipe_api:transporter_node"
         }
       ],
       "rolls": 1.0
