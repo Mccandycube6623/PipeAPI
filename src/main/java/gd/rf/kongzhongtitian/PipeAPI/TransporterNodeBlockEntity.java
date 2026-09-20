@@ -352,10 +352,10 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyHandler = LazyOptional.of(() -> itemHandler);
-    }
+	public void onLoad() {
+		super.onLoad();
+		lazyHandler = LazyOptional.of(() -> new SingleSlotItemHandler(itemHandler, SLOT_CACHE));
+	}
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
