@@ -391,4 +391,5 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
 	public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
 		return new TransporterNodeMenu(id, inv, this.itemHandler,
 				ContainerLevelAccess.create(level, worldPosition));
+	}
 }
