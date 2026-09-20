@@ -1,13 +1,13 @@
 package gd.rf.kongzhongtitian.PipeAPI;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class SingleSlotItemHandler implements IItemHandler {
-    private final IItemHandler delegate;
+public class SingleSlotItemHandler implements IItemHandlerModifiable {
+    private final IItemHandlerModifiable delegate;
     private final int exposedSlot;
 
-    public SingleSlotItemHandler(IItemHandler delegate, int exposedSlot) {
+    public SingleSlotItemHandler(IItemHandlerModifiable delegate, int exposedSlot) {
         this.delegate = delegate;
         this.exposedSlot = exposedSlot;
     }
@@ -45,5 +45,12 @@ public class SingleSlotItemHandler implements IItemHandler {
     public boolean isItemValid(int slot, ItemStack stack) {
         if (slot != 0) return false;
         return delegate.isItemValid(exposedSlot, stack);
+    }
+
+    @Override
+    public void setStackInSlot(int slot, ItemStack stack) {
+        if (slot == 0) {
+            delegate.setStackInSlot(exposedSlot, stack);
+        }
     }
 }
