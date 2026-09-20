@@ -20,8 +20,8 @@ public class TransporterNodeMenu extends AbstractContainerMenu {
     public static final int RESERVED_X = 116, RESERVED_Y = 50;
     //public static final int DIR_Y = 96;
     //public static final int[] DIR_X = {26, 44, 62, 80, 98, 116};
-    public static final int[] DIR_X = {20, 38, 20, 2, 20, 38};
-	public static final int[] DIR_Y = {152, 134, 116, 134, 134, 152};
+    public static final int[] DIR_Y = {20, 38, 20, 2, 20, 38};
+	public static final int[] DIR_X = {152, 134, 116, 134, 134, 152};
 
     // 玩家背包起始 Y
     public static final int INV_Y = 128;
