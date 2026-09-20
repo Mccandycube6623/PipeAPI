@@ -39,7 +39,7 @@ jobs:
       - name: Upload JAR artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ducktech-jars
+          name: pipe-api-jars
           path: |
             **/build/libs/*.jar
           if-no-files-found: error
